@@ -7,7 +7,7 @@ interface WelcomeScreenProps {
 
 export function WelcomeScreen({ onPromptClick }: WelcomeScreenProps) {
   const suggestions = [
-    { icon: Cake, text: "Birthday cakes under LKR 5000", color: "text-pink-400" },
+    { icon: Cake, text: "Cakes under LKR 5000", color: "text-pink-400" },
     { icon: Flower2, text: "Send a bouquet to Colombo", color: "text-rose-400" },
     { icon: Gift, text: "Anniversary gift ideas", color: "text-purple-400" },
     { icon: Heart, text: "Romantic gifts for him", color: "text-red-400" }
@@ -15,16 +15,8 @@ export function WelcomeScreen({ onPromptClick }: WelcomeScreenProps) {
 
   return (
     <div className="flex flex-col items-center justify-center h-full px-4 text-center max-w-2xl mx-auto pt-10 pb-20">
-      <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 260, damping: 20 }}
-        className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-primary-dark shadow-[0_0_40px_rgba(139,92,246,0.3)] flex items-center justify-center mb-6 border border-white/10"
-      >
-        <Gift size={36} className="text-white" />
-      </motion.div>
-      
-      <motion.h1 
+
+      <motion.h1
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.1 }}
@@ -32,8 +24,8 @@ export function WelcomeScreen({ onPromptClick }: WelcomeScreenProps) {
       >
         Hi, I'm <span className="text-gradient">Kapru</span>.
       </motion.h1>
-      
-      <motion.p 
+
+      <motion.p
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2 }}
@@ -41,8 +33,8 @@ export function WelcomeScreen({ onPromptClick }: WelcomeScreenProps) {
       >
         Your personal gifting concierge for Sri Lanka. What occasion are we celebrating today?
       </motion.p>
-      
-      <motion.div 
+
+      <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.3 }}

@@ -116,6 +116,8 @@ export function ChatCanvas() {
           handleSubmit={handleSubmit}
           isLoading={isLoading}
           stop={stop}
+          itemCount={cart.reduce((sum, item) => sum + item.quantity, 0)}
+          onCartClick={() => setIsCartOpen(true)}
         />
       </div>
     </div>

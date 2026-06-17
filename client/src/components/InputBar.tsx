@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { SendHorizonal, Loader2, Square } from 'lucide-react';
+import { SendHorizonal, Loader2, Square, ShoppingBag } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface InputBarProps {
@@ -8,9 +8,11 @@ interface InputBarProps {
   handleSubmit: () => void;
   isLoading: boolean;
   stop: () => void;
+  itemCount: number;
+  onCartClick: () => void;
 }
 
-export function InputBar({ input, setInput, handleSubmit, isLoading, stop }: InputBarProps) {
+export function InputBar({ input, setInput, handleSubmit, isLoading, stop, itemCount, onCartClick }: InputBarProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   // Auto-resize textarea
@@ -44,8 +46,25 @@ export function InputBar({ input, setInput, handleSubmit, isLoading, stop }: Inp
       <div className="max-w-3xl mx-auto relative">
         <form
           onSubmit={onFormSubmit}
-          className="relative flex items-end gap-2 glass-input p-1.5 pl-4 shadow-xl"
+          className="relative flex items-end gap-2 glass-input p-1.5 pl-2 shadow-xl"
         >
+          {/* Cart Button embedded in input bar */}
+          <button
+            type="button"
+            onClick={onCartClick}
+            className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors mb-0.5 relative group"
+          >
+            <ShoppingBag size={20} className="group-hover:text-primary transition-colors" />
+            {itemCount > 0 && (
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                className="absolute top-0 right-0 bg-gradient-to-tr from-accent to-yellow-200 text-brand-deep text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(248,218,8,0.5)]"
+              >
+                {itemCount}
+              </motion.div>
+            )}
+          </button>
           <textarea
             ref={textareaRef}
             value={input}

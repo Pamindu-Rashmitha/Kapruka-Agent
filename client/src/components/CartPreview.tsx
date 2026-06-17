@@ -15,27 +15,7 @@ export function CartPreview({ cart, isOpen, setIsOpen, updateQuantity }: CartPre
 
   return (
     <>
-      {/* Floating Cart Button */}
-      <AnimatePresence>
-        {!isOpen && (
-          <motion.button
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0, opacity: 0 }}
-            onClick={() => setIsOpen(true)}
-            className="fixed top-6 right-6 z-40 bg-surface/80 backdrop-blur-xl border border-white/10 shadow-2xl p-3 rounded-full text-white flex items-center justify-center hover:bg-white/10 transition-colors"
-          >
-            <div className="relative">
-              <ShoppingBag size={24} />
-              {itemCount > 0 && (
-                <div className="absolute -top-2 -right-2 bg-accent text-brand-deep text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-surface">
-                  {itemCount}
-                </div>
-              )}
-            </div>
-          </motion.button>
-        )}
-      </AnimatePresence>
+
 
       {/* Cart Drawer/Modal */}
       <AnimatePresence>
@@ -46,18 +26,21 @@ export function CartPreview({ cart, isOpen, setIsOpen, updateQuantity }: CartPre
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+              className="fixed inset-0 bg-black/40 backdrop-blur-md z-40"
             />
             <motion.div
               initial={{ x: '100%', opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: '100%', opacity: 0 }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-full max-w-md bg-surface/95 backdrop-blur-2xl border-l border-white/10 shadow-2xl z-50 flex flex-col"
+              className="fixed top-0 right-0 bottom-0 w-full max-w-md bg-surface/40 backdrop-blur-3xl border-l border-white/10 shadow-[[-20px_0_40px_rgba(0,0,0,0.3)]] z-50 flex flex-col"
             >
-              <div className="flex items-center justify-between p-6 border-b border-white/10">
-                <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                  <ShoppingBag size={20} className="text-primary" />
+              {/* Subtle glass gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none" />
+
+              <div className="relative z-10 flex items-center justify-between p-6 border-b border-white/10 bg-white/5">
+                <h2 className="text-xl font-bold text-white flex items-center gap-2 drop-shadow-md">
+                  <ShoppingBag size={20} className="text-primary drop-shadow-[0_0_8px_rgba(139,92,246,0.5)]" />
                   Your Cart
                 </h2>
                 <button
@@ -68,21 +51,39 @@ export function CartPreview({ cart, isOpen, setIsOpen, updateQuantity }: CartPre
                 </button>
               </div>
 
-              <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-4 custom-scrollbar">
+              <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-4 custom-scrollbar relative z-10">
                 {cart.length === 0 ? (
-                  <div className="flex-1 flex flex-col items-center justify-center text-center py-12">
-                    <ShoppingBag size={48} className="text-white/10 mb-4" />
-                    <p className="text-gray-400 text-sm">Your cart is empty</p>
-                    <p className="text-gray-500 text-xs mt-1">Ask Kapru to find something for you!</p>
-                  </div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                    className="flex-1 flex flex-col items-center justify-center text-center py-12"
+                  >
+                    <div className="w-24 h-24 mb-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shadow-[0_0_30px_rgba(139,92,246,0.1)] relative">
+                      <div className="absolute inset-0 rounded-full bg-primary/20 animate-pulse blur-xl" />
+                      <ShoppingBag size={40} className="text-white/40 relative z-10" />
+                    </div>
+                    <p className="text-white font-medium mb-1">Your cart is empty</p>
+                    <p className="text-gray-400 text-sm max-w-[200px]">Ask Kapru to find something special for you!</p>
+                  </motion.div>
                 ) : (
                   cart.map(item => (
-                    <div key={item.productId} className="flex gap-4 p-4 glass-panel bg-white/5">
-                      <div className="w-20 h-20 rounded-xl bg-black/30 overflow-hidden flex-shrink-0">
+                    <motion.div
+                      key={item.productId}
+                      layout
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      className="flex gap-4 p-4 glass-panel bg-white/5 hover:bg-white/10 transition-all duration-300 group"
+                    >
+                      <div className="w-20 h-20 rounded-xl bg-black/40 border border-white/10 overflow-hidden flex-shrink-0 relative group-hover:border-white/20 transition-colors">
                         {item.imageUrl ? (
                           <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
                         ) : (
-                          <div className="w-full h-full flex items-center justify-center text-white/20 text-xs">No image</div>
+                          <div className="w-full h-full flex flex-col items-center justify-center text-white/20 text-[10px] bg-gradient-to-br from-white/5 to-transparent">
+                            <ShoppingBag size={16} className="mb-1 opacity-50" />
+                            No image
+                          </div>
                         )}
                       </div>
                       <div className="flex-1 flex flex-col">
@@ -92,40 +93,49 @@ export function CartPreview({ cart, isOpen, setIsOpen, updateQuantity }: CartPre
                         </div>
 
                         <div className="mt-auto flex items-center gap-3 pt-2">
-                          <div className="flex items-center bg-black/40 rounded-lg border border-white/10">
-                            <button
+                          <div className="flex items-center bg-black/40 rounded-lg border border-white/10 shadow-inner">
+                            <motion.button
+                              whileTap={{ scale: 0.9 }}
                               onClick={() => updateQuantity(item.productId, item.quantity - 1)}
                               className="p-1.5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors rounded-l-lg"
                             >
                               <Minus size={14} />
-                            </button>
+                            </motion.button>
                             <span className="w-8 text-center text-sm font-medium text-white">{item.quantity}</span>
-                            <button
+                            <motion.button
+                              whileTap={{ scale: 0.9 }}
                               onClick={() => updateQuantity(item.productId, item.quantity + 1)}
                               className="p-1.5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors rounded-r-lg"
                             >
                               <Plus size={14} />
-                            </button>
+                            </motion.button>
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   ))
                 )}
               </div>
 
-              <div className="p-6 border-t border-white/10 bg-black/20">
+              <div className="p-6 border-t border-white/10 bg-black/40 backdrop-blur-xl relative z-10">
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-gray-400">Subtotal</span>
-                  <span className="text-xl font-bold text-white">LKR {totalLkr.toLocaleString()}</span>
+                  <span className="text-gray-400 font-medium">Subtotal</span>
+                  <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 drop-shadow-sm">
+                    LKR {totalLkr.toLocaleString()}
+                  </span>
                 </div>
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   onClick={() => setIsOpen(false)} // Close cart, let the user tell the AI to checkout
-                  className="w-full py-4 rounded-xl bg-primary text-white font-bold hover:bg-primary-dark transition-colors shadow-lg shadow-primary/20 flex items-center justify-center gap-2"
+                  className="w-full py-4 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-white font-bold transition-all shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_30px_rgba(139,92,246,0.5)] border border-white/20 relative overflow-hidden group"
                 >
-                  Continue in Chat
-                </button>
-                <p className="text-xs text-center text-gray-500 mt-3">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    Continue in Chat
+                  </span>
+                </motion.button>
+                <p className="text-xs text-center text-gray-400 mt-4 font-medium">
                   Tell Kapru when you're ready to checkout!
                 </p>
               </div>
