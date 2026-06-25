@@ -3,6 +3,8 @@ import { useChat } from '@ai-sdk/react';
 import { DefaultChatTransport } from 'ai';
 import type { CartItem } from '../types';
 
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
 function getOrCreateSessionId() {
   const stored = localStorage.getItem('kapru_session_id');
   if (stored) return stored;
@@ -21,7 +23,7 @@ export function useShoppingChat() {
     setSessionId(id);
 
     // Attempt to fetch existing session state from server
-    fetch(`/api/session/${id}`)
+    fetch(`${API_BASE}/api/session/${id}`)
       .then(res => {
         if (res.ok) return res.json();
         throw new Error('Session not found');
@@ -31,7 +33,7 @@ export function useShoppingChat() {
       })
       .catch(() => {
         // Create new session if it doesn't exist
-        fetch('/api/session', {
+        fetch(`${API_BASE}/api/session`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ sessionId: id })
@@ -42,7 +44,7 @@ export function useShoppingChat() {
 
   const chat = useChat({
     transport: new DefaultChatTransport({
-      api: '/api/chat',
+      api: `${API_BASE}/api/chat`,
       body: { sessionId },
     }),
     onError: (err) => {

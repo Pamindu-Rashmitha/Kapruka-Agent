@@ -6,6 +6,8 @@ export const env = {
   MONGODB_URI: process.env.MONGODB_URI || '',
   OPENAI_API_KEY: process.env.OPENAI_API_KEY || '',
   MCP_ENDPOINT: process.env.MCP_ENDPOINT || 'https://mcp.kapruka.com/mcp',
+  NODE_ENV: process.env.NODE_ENV || 'development',
+  CORS_ORIGIN: process.env.CORS_ORIGIN || '*',
 } as const;
 
 // Validate required env vars at startup
