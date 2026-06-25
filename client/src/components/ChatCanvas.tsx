@@ -6,6 +6,7 @@ import { InputBar } from './InputBar';
 import { TypingIndicator } from './TypingIndicator';
 import { CartPreview } from './CartPreview';
 import { Loader2 } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 export function ChatCanvas() {
   const [input, setInput] = useState('');
@@ -47,9 +48,9 @@ export function ChatCanvas() {
 
   if (!isServerReady) {
     return (
-      <div className="h-dvh w-full flex flex-col items-center justify-center bg-surface text-white">
+      <div className="h-dvh w-full flex flex-col items-center justify-center bg-surface text-gray-900 dark:text-white transition-colors duration-300">
         <Loader2 size={32} className="animate-spin text-primary mb-4" />
-        <p className="text-gray-400">Connecting to Kapruka MCP...</p>
+        <p className="text-gray-600 dark:text-gray-400">Connecting to Kapruka MCP...</p>
       </div>
     );
   }
@@ -65,7 +66,11 @@ export function ChatCanvas() {
   );
 
   return (
-    <div className="h-dvh w-full flex flex-col relative overflow-hidden">
+    <div className="h-dvh w-full flex flex-col relative overflow-hidden bg-surface transition-colors duration-300">
+      <div className="absolute top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
+
       <CartPreview
         cart={cart}
         isOpen={isCartOpen}

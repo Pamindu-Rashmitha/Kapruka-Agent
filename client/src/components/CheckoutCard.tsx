@@ -11,14 +11,14 @@ export function CheckoutCard({ order }: CheckoutCardProps) {
     <motion.div 
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="glass-panel w-full max-w-sm overflow-hidden bg-gradient-to-br from-surface to-black border border-primary/30"
+      className="glass-panel w-full max-w-sm overflow-hidden bg-gradient-to-br from-white dark:from-surface to-gray-50 dark:to-black border border-primary/30"
     >
       <div className="bg-primary/20 p-4 border-b border-primary/20 flex items-center gap-3">
         <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-lg shadow-primary/30 text-white">
           <CreditCard size={20} />
         </div>
         <div>
-          <h3 className="font-bold text-white text-lg">Order Ready</h3>
+          <h3 className="font-bold text-gray-900 dark:text-white text-lg">Order Ready</h3>
           <p className="text-primary/80 text-xs font-medium flex items-center gap-1">
             <Clock size={12} />
             Prices locked for {order.expires_in_minutes} mins
@@ -27,15 +27,15 @@ export function CheckoutCard({ order }: CheckoutCardProps) {
       </div>
       
       <div className="p-5 space-y-3">
-        <div className="flex justify-between items-center text-sm text-gray-300">
+        <div className="flex justify-between items-center text-sm text-gray-600 dark:text-gray-300">
           <span>Items Total</span>
           <span className="font-medium">{order.currency} {order.cart_total.toLocaleString()}</span>
         </div>
-        <div className="flex justify-between items-center text-sm text-gray-300 pb-3 border-b border-white/10">
+        <div className="flex justify-between items-center text-sm text-gray-600 dark:text-gray-300 pb-3 border-b border-gray-200 dark:border-white/10">
           <span>Delivery</span>
           <span className="font-medium">{order.currency} {order.delivery_charge.toLocaleString()}</span>
         </div>
-        <div className="flex justify-between items-center text-lg font-bold text-white pt-1">
+        <div className="flex justify-between items-center text-lg font-bold text-gray-900 dark:text-white pt-1">
           <span>Total</span>
           <span className="text-accent">{order.currency} {order.grand_total.toLocaleString()}</span>
         </div>

@@ -33,19 +33,19 @@ export function CartPreview({ cart, isOpen, setIsOpen, updateQuantity }: CartPre
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: '100%', opacity: 0 }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-full max-w-md bg-surface/40 backdrop-blur-3xl border-l border-white/10 shadow-[[-20px_0_40px_rgba(0,0,0,0.3)]] z-50 flex flex-col"
+              className="fixed top-0 right-0 bottom-0 w-full max-w-md bg-white/90 dark:bg-surface/40 backdrop-blur-3xl border-l border-gray-200 dark:border-white/10 shadow-[[-20px_0_40px_rgba(0,0,0,0.1)]] dark:shadow-[[-20px_0_40px_rgba(0,0,0,0.3)]] z-50 flex flex-col"
             >
               {/* Subtle glass gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none" />
 
-              <div className="relative z-10 flex items-center justify-between p-6 border-b border-white/10 bg-white/5">
-                <h2 className="text-xl font-bold text-white flex items-center gap-2 drop-shadow-md">
+              <div className="relative z-10 flex items-center justify-between p-6 border-b border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2 drop-shadow-md">
                   <ShoppingBag size={20} className="text-primary drop-shadow-[0_0_8px_rgba(139,92,246,0.5)]" />
                   Your Cart
                 </h2>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="p-2 rounded-full hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
+                  className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-white/10 text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white transition-colors"
                 >
                   <X size={20} />
                 </button>
@@ -59,12 +59,12 @@ export function CartPreview({ cart, isOpen, setIsOpen, updateQuantity }: CartPre
                     transition={{ delay: 0.1 }}
                     className="flex-1 flex flex-col items-center justify-center text-center py-12"
                   >
-                    <div className="w-24 h-24 mb-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shadow-[0_0_30px_rgba(139,92,246,0.1)] relative">
+                    <div className="w-24 h-24 mb-6 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center shadow-[0_0_30px_rgba(139,92,246,0.1)] relative">
                       <div className="absolute inset-0 rounded-full bg-primary/20 animate-pulse blur-xl" />
-                      <ShoppingBag size={40} className="text-white/40 relative z-10" />
+                      <ShoppingBag size={40} className="text-gray-400 dark:text-white/40 relative z-10" />
                     </div>
-                    <p className="text-white font-medium mb-1">Your cart is empty</p>
-                    <p className="text-gray-400 text-sm max-w-[200px]">Ask Kapru to find something special for you!</p>
+                    <p className="text-gray-800 dark:text-white font-medium mb-1">Your cart is empty</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm max-w-[200px]">Ask Kapru to find something special for you!</p>
                   </motion.div>
                 ) : (
                   cart.map(item => (
@@ -74,9 +74,9 @@ export function CartPreview({ cart, isOpen, setIsOpen, updateQuantity }: CartPre
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.95 }}
-                      className="flex gap-4 p-4 glass-panel bg-white/5 hover:bg-white/10 transition-all duration-300 group"
+                      className="flex gap-4 p-4 glass-panel bg-white dark:bg-white/5 hover:bg-gray-50 dark:hover:bg-white/10 transition-all duration-300 group"
                     >
-                      <div className="w-20 h-20 rounded-xl bg-black/40 border border-white/10 overflow-hidden flex-shrink-0 relative group-hover:border-white/20 transition-colors">
+                      <div className="w-20 h-20 rounded-xl bg-gray-100 dark:bg-black/40 border border-gray-200 dark:border-white/10 overflow-hidden flex-shrink-0 relative group-hover:border-gray-300 dark:group-hover:border-white/20 transition-colors">
                         {item.imageUrl ? (
                           <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
                         ) : (
@@ -87,25 +87,25 @@ export function CartPreview({ cart, isOpen, setIsOpen, updateQuantity }: CartPre
                         )}
                       </div>
                       <div className="flex-1 flex flex-col">
-                        <h3 className="text-sm font-medium text-gray-200 line-clamp-2 leading-tight">{item.name}</h3>
+                        <h3 className="text-sm font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-tight">{item.name}</h3>
                         <div className="mt-1 font-bold text-accent text-sm">
                           LKR {item.price.toLocaleString()}
                         </div>
 
                         <div className="mt-auto flex items-center gap-3 pt-2">
-                          <div className="flex items-center bg-black/40 rounded-lg border border-white/10 shadow-inner">
+                          <div className="flex items-center bg-gray-100 dark:bg-black/40 rounded-lg border border-gray-200 dark:border-white/10 shadow-inner">
                             <motion.button
                               whileTap={{ scale: 0.9 }}
                               onClick={() => updateQuantity(item.productId, item.quantity - 1)}
-                              className="p-1.5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors rounded-l-lg"
+                              className="p-1.5 hover:bg-gray-200 dark:hover:bg-white/10 text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white transition-colors rounded-l-lg"
                             >
                               <Minus size={14} />
                             </motion.button>
-                            <span className="w-8 text-center text-sm font-medium text-white">{item.quantity}</span>
+                            <span className="w-8 text-center text-sm font-medium text-gray-900 dark:text-white">{item.quantity}</span>
                             <motion.button
                               whileTap={{ scale: 0.9 }}
                               onClick={() => updateQuantity(item.productId, item.quantity + 1)}
-                              className="p-1.5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors rounded-r-lg"
+                              className="p-1.5 hover:bg-gray-200 dark:hover:bg-white/10 text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white transition-colors rounded-r-lg"
                             >
                               <Plus size={14} />
                             </motion.button>
@@ -117,10 +117,10 @@ export function CartPreview({ cart, isOpen, setIsOpen, updateQuantity }: CartPre
                 )}
               </div>
 
-              <div className="p-6 border-t border-white/10 bg-black/40 backdrop-blur-xl relative z-10">
+              <div className="p-6 border-t border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-black/40 backdrop-blur-xl relative z-10">
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-gray-400 font-medium">Subtotal</span>
-                  <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 drop-shadow-sm">
+                  <span className="text-gray-500 dark:text-gray-400 font-medium">Subtotal</span>
+                  <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-900 dark:from-white to-gray-600 dark:to-gray-300 drop-shadow-sm">
                     LKR {totalLkr.toLocaleString()}
                   </span>
                 </div>
@@ -135,7 +135,7 @@ export function CartPreview({ cart, isOpen, setIsOpen, updateQuantity }: CartPre
                     Continue in Chat
                   </span>
                 </motion.button>
-                <p className="text-xs text-center text-gray-400 mt-4 font-medium">
+                <p className="text-xs text-center text-gray-500 dark:text-gray-400 mt-4 font-medium">
                   Tell Kapru when you're ready to checkout!
                 </p>
               </div>

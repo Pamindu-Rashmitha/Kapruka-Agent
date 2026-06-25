@@ -46,7 +46,7 @@ export function MessageBubble({ message, onAddToCart }: MessageBubbleProps) {
     >
       {/* Avatar */}
       <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${isUser
-        ? 'bg-white/10 border border-white/20 text-white'
+        ? 'bg-black/10 dark:bg-white/10 border border-black/20 dark:border-white/20 text-gray-700 dark:text-white'
         : 'bg-gradient-to-br from-primary to-primary-dark shadow-lg shadow-primary/20 text-white'
         }`}>
         {isUser ? <User size={16} /> : <Gift size={16} />}
@@ -57,14 +57,14 @@ export function MessageBubble({ message, onAddToCart }: MessageBubbleProps) {
         {textContent && (
           <div className={`px-4 py-3 rounded-2xl text-[15px] leading-relaxed shadow-sm max-w-[85%] ${isUser
             ? 'bg-primary text-white rounded-tr-sm'
-            : 'bg-white/5 backdrop-blur-md border border-white/10 text-gray-100 rounded-tl-sm'
+            : 'bg-gray-100 dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 text-gray-800 dark:text-gray-100 rounded-tl-sm'
             }`}>
             <ReactMarkdown
               components={{
                 p: ({ node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
                 a: ({ node, ...props }) => <a className="text-secondary hover:underline font-medium" target="_blank" rel="noopener noreferrer" {...props} />,
                 ul: ({ node, ...props }) => <ul className="list-disc pl-4 mb-2 space-y-1" {...props} />,
-                strong: ({ node, ...props }) => <strong className="font-semibold text-white" {...props} />,
+                strong: ({ node, ...props }) => <strong className="font-semibold text-gray-900 dark:text-white" {...props} />,
                 img: () => null, // Hide inline images to avoid redundancy with tool UI
               }}
             >
@@ -86,7 +86,7 @@ export function MessageBubble({ message, onAddToCart }: MessageBubbleProps) {
                 const products = parseSearchResults(output);
                 if (products.length === 0) {
                   return (
-                    <div key={partKey} className="mt-2 text-sm text-gray-400 italic px-2">
+                    <div key={partKey} className="mt-2 text-sm text-gray-500 dark:text-gray-400 italic px-2">
                       No products found.
                     </div>
                   );
@@ -131,7 +131,7 @@ export function MessageBubble({ message, onAddToCart }: MessageBubbleProps) {
               }
               default:
                 return (
-                  <div key={partKey} className="mt-2 text-xs font-mono bg-black/30 p-2 rounded border border-white/5 text-gray-400 max-w-full overflow-x-auto hidden">
+                  <div key={partKey} className="mt-2 text-xs font-mono bg-black/10 dark:bg-black/30 p-2 rounded border border-black/5 dark:border-white/5 text-gray-500 dark:text-gray-400 max-w-full overflow-x-auto hidden">
                     Completed: {toolName}
                   </div>
                 );

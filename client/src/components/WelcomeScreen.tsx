@@ -20,7 +20,7 @@ export function WelcomeScreen({ onPromptClick }: WelcomeScreenProps) {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.1 }}
-        className="text-3xl md:text-4xl font-bold mb-3 tracking-tight text-white"
+        className="text-3xl md:text-4xl font-bold mb-3 tracking-tight text-gray-900 dark:text-white"
       >
         Hi, I'm <span className="text-gradient">Kapru</span>.
       </motion.h1>
@@ -29,7 +29,7 @@ export function WelcomeScreen({ onPromptClick }: WelcomeScreenProps) {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="text-gray-400 text-lg mb-10 max-w-md"
+        className="text-gray-600 dark:text-gray-400 text-lg mb-10 max-w-md"
       >
         Your personal gifting concierge for Sri Lanka. What occasion are we celebrating today?
       </motion.p>
@@ -43,15 +43,15 @@ export function WelcomeScreen({ onPromptClick }: WelcomeScreenProps) {
         {suggestions.map((s, i) => (
           <motion.button
             key={i}
-            whileHover={{ scale: 1.02, backgroundColor: 'rgba(255,255,255,0.08)' }}
+            whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => onPromptClick(s.text)}
-            className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/5 text-left transition-colors"
+            className="flex items-center gap-3 p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 text-left transition-colors hover:bg-black/10 dark:hover:bg-white/10"
           >
-            <div className={`p-2 rounded-full bg-white/5 ${s.color}`}>
+            <div className={`p-2 rounded-full bg-black/5 dark:bg-white/5 ${s.color}`}>
               <s.icon size={18} />
             </div>
-            <span className="text-sm font-medium text-gray-200">{s.text}</span>
+            <span className="text-sm font-medium text-gray-800 dark:text-gray-200">{s.text}</span>
           </motion.button>
         ))}
       </motion.div>

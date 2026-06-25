@@ -14,9 +14,9 @@ export function ProductCard({ product, onAdd }: ProductCardProps) {
   return (
     <motion.div 
       whileHover={{ y: -6 }}
-      className="glass-panel overflow-hidden flex flex-col h-full bg-white/5 hover:bg-white/[0.08] group relative border border-white/5 hover:border-white/20 transition-colors duration-300 shadow-lg hover:shadow-primary/20 hover:shadow-2xl rounded-2xl"
+      className="glass-panel overflow-hidden flex flex-col h-full bg-white dark:bg-white/5 hover:bg-gray-50 dark:hover:bg-white/[0.08] group relative border border-gray-200 dark:border-white/5 hover:border-gray-300 dark:hover:border-white/20 transition-colors duration-300 shadow-lg hover:shadow-primary/20 hover:shadow-2xl rounded-2xl"
     >
-      <div className="aspect-square w-full relative overflow-hidden bg-black/20">
+      <div className="aspect-square w-full relative overflow-hidden bg-gray-100 dark:bg-black/20">
         {product.imageUrl ? (
           <img 
             src={product.imageUrl} 
@@ -24,7 +24,7 @@ export function ProductCard({ product, onAdd }: ProductCardProps) {
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-white/20">
+          <div className="w-full h-full flex items-center justify-center text-gray-400 dark:text-white/20">
             No image
           </div>
         )}
@@ -33,7 +33,7 @@ export function ProductCard({ product, onAdd }: ProductCardProps) {
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-surface/90 to-transparent pointer-events-none transition-opacity duration-300 group-hover:opacity-80" />
         
         {/* Brand badge */}
-        <div className="absolute top-3 left-3 bg-black/40 backdrop-blur-md px-2 py-1 rounded-md text-[10px] uppercase tracking-wider font-semibold text-white/80 border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute top-3 left-3 bg-black/40 dark:bg-black/40 backdrop-blur-md px-2 py-1 rounded-md text-[10px] uppercase tracking-wider font-semibold text-white/80 border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           Kapruka
         </div>
 
@@ -44,12 +44,12 @@ export function ProductCard({ product, onAdd }: ProductCardProps) {
       </div>
       
       <div className="p-4 flex flex-col flex-grow">
-        <h3 className="font-semibold text-gray-100 line-clamp-2 leading-snug mb-2 group-hover:text-primary transition-colors duration-300">
+        <h3 className="font-semibold text-gray-800 dark:text-gray-100 line-clamp-2 leading-snug mb-2 group-hover:text-primary transition-colors duration-300">
           {product.name}
         </h3>
         
-        <div className="flex items-center gap-2 mt-auto pt-3 border-t border-white/5">
-          <div className="flex items-center gap-1.5 text-xs text-gray-400">
+        <div className="flex items-center gap-2 mt-auto pt-3 border-t border-gray-200 dark:border-white/5">
+          <div className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400">
             <span className={`w-2 h-2 rounded-full ${product.inStock ? 'bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]' : 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.6)]'}`} />
             <span className="font-medium">{product.inStock ? 'In Stock' : 'Out of Stock'}</span>
           </div>
@@ -59,7 +59,7 @@ export function ProductCard({ product, onAdd }: ProductCardProps) {
               href={productUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-8 h-8 rounded-full bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10 hover:text-white transition-colors"
+              className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-white/5 text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-white/10 hover:bg-gray-200 dark:hover:bg-white/10 hover:text-gray-700 dark:hover:text-white transition-colors"
               title="View on Kapruka"
             >
               <ExternalLink size={14} />

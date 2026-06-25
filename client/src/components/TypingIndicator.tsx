@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export function TypingIndicator() {
   return (
-    <div className="flex items-center gap-1.5 px-4 py-3 bg-white/5 backdrop-blur-md rounded-2xl rounded-tl-sm w-fit border border-white/5">
+    <div className="flex items-center gap-1.5 px-4 py-3 bg-gray-100 dark:bg-white/5 backdrop-blur-md rounded-2xl rounded-tl-sm w-fit border border-gray-200 dark:border-white/5">
       <motion.div
         className="w-1.5 h-1.5 bg-primary rounded-full"
         animate={{ y: [0, -5, 0] }}

@@ -62,14 +62,14 @@ export function ProductCarousel({ products, onAddToCart }: ProductCarouselProps)
         <button
           onClick={scrollPrev}
           disabled={!prevBtnEnabled}
-          className="absolute left-[-16px] top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-surface/80 border border-white/10 flex items-center justify-center text-white backdrop-blur-md shadow-lg disabled:opacity-0 transition-all z-10"
+          className="absolute left-[-16px] top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white dark:bg-surface/80 border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-700 dark:text-white backdrop-blur-md shadow-lg disabled:opacity-0 transition-all z-10"
         >
           <ChevronLeft size={18} />
         </button>
         <button
           onClick={scrollNext}
           disabled={!nextBtnEnabled}
-          className="absolute right-[-16px] top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-surface/80 border border-white/10 flex items-center justify-center text-white backdrop-blur-md shadow-lg disabled:opacity-0 transition-all z-10"
+          className="absolute right-[-16px] top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white dark:bg-surface/80 border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-700 dark:text-white backdrop-blur-md shadow-lg disabled:opacity-0 transition-all z-10"
         >
           <ChevronRight size={18} />
         </button>

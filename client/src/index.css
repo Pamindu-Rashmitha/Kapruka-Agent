@@ -9,37 +9,54 @@
   --color-primary: #8b5cf6;
   --color-primary-dark: #7c3aed;
   --color-secondary: #f59e0b;
-  --color-surface: #0f0b1a;
-  --color-surface-card: rgba(255, 255, 255, 0.05);
+  --color-surface: var(--theme-surface);
+  --color-surface-card: var(--theme-surface-card);
   
-  --font-sans: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
+  --font-sans: "Roboto", sans-serif;
 }
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
   :root {
+    --theme-surface: #ffffff;
+    --theme-surface-card: rgba(0, 0, 0, 0.05);
+    color-scheme: light;
+  }
+
+  :root.dark {
+    --theme-surface: #0f0b1a;
+    --theme-surface-card: rgba(255, 255, 255, 0.05);
     color-scheme: dark;
   }
   
   body {
-    @apply bg-surface text-gray-100 font-sans antialiased;
+    @apply bg-surface text-gray-900 dark:text-gray-100 font-sans antialiased transition-colors duration-300;
     background-image: 
-      radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(245, 158, 11, 0.1) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, rgba(64, 41, 112, 0.2) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.06) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(245, 158, 11, 0.04) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(64, 41, 112, 0.06) 0px, transparent 50%);
     background-attachment: fixed;
     margin: 0;
     padding: 0;
     overflow: hidden; /* App handles its own scrolling */
   }
+
+  .dark body {
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(245, 158, 11, 0.1) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(64, 41, 112, 0.2) 0px, transparent 50%);
+  }
 }
 
 @layer utilities {
   .glass-panel {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(139,92,246,0.15)] rounded-2xl;
+    @apply bg-black/5 dark:bg-white/5 backdrop-blur-xl border border-black/10 dark:border-white/10 shadow-[0_8px_32px_rgba(139,92,246,0.15)] rounded-2xl;
   }
   
   .glass-input {
-    @apply bg-black/20 backdrop-blur-md border border-white/10 rounded-3xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all;
+    @apply bg-black/5 dark:bg-black/20 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-3xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all;
   }
 
   .text-gradient {
@@ -58,9 +75,9 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-white/10 rounded-full;
+  @apply bg-black/20 dark:bg-white/10 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-white/20;
+  @apply bg-black/30 dark:bg-white/20;
 }

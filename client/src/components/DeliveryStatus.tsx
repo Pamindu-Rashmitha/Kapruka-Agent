@@ -11,7 +11,7 @@ export function DeliveryStatus({ info }: DeliveryStatusProps) {
     <motion.div 
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="glass-panel w-full max-w-sm overflow-hidden bg-gradient-to-br from-surface to-black/80 border border-white/10"
+      className="glass-panel w-full max-w-sm overflow-hidden bg-gradient-to-br from-white dark:from-surface to-gray-50 dark:to-black/80 border border-gray-200 dark:border-white/10"
     >
       <div className={`p-4 border-b flex items-center gap-3 ${
         info.available ? 'bg-green-500/10 border-green-500/20' : 'bg-red-500/10 border-red-500/20'
@@ -22,10 +22,10 @@ export function DeliveryStatus({ info }: DeliveryStatusProps) {
           {info.available ? <CheckCircle2 size={20} /> : <XCircle size={20} />}
         </div>
         <div>
-          <h3 className="font-bold text-white text-base">
+          <h3 className="font-bold text-gray-900 dark:text-white text-base">
             {info.available ? 'Delivery Available' : 'Delivery Unavailable'}
           </h3>
-          <p className="text-gray-400 text-xs flex items-center gap-1 mt-0.5">
+          <p className="text-gray-500 dark:text-gray-400 text-xs flex items-center gap-1 mt-0.5">
             <MapPin size={12} />
             {info.city}
           </p>
@@ -34,8 +34,8 @@ export function DeliveryStatus({ info }: DeliveryStatusProps) {
       
       <div className="p-4 space-y-3">
         {info.date && (
-          <div className="flex items-center gap-3 text-sm text-gray-300">
-            <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-primary border border-white/5">
+          <div className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-300">
+            <div className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-white/5 flex items-center justify-center text-primary border border-gray-200 dark:border-white/5">
               <Calendar size={16} />
             </div>
             <div>
@@ -46,13 +46,13 @@ export function DeliveryStatus({ info }: DeliveryStatusProps) {
         )}
         
         {info.rate_lkr !== undefined && info.available && (
-          <div className="flex items-center gap-3 text-sm text-gray-300">
-            <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-secondary border border-white/5">
+          <div className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-300">
+            <div className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-white/5 flex items-center justify-center text-secondary border border-gray-200 dark:border-white/5">
               <Truck size={16} />
             </div>
             <div>
               <div className="text-xs text-gray-500 mb-0.5">Delivery Charge</div>
-              <div className="font-medium text-white">LKR {info.rate_lkr.toLocaleString()}</div>
+              <div className="font-medium text-gray-900 dark:text-white">LKR {info.rate_lkr.toLocaleString()}</div>
             </div>
           </div>
         )}
