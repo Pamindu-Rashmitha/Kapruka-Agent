@@ -3,7 +3,7 @@ import { useChat } from '@ai-sdk/react';
 import { DefaultChatTransport } from 'ai';
 import type { CartItem } from '../types';
 
-const API_BASE = import.meta.env.VITE_API_URL || '';
+const API_BASE = import.meta.env.VITE_API_URL || 'https://kapruka-agent.onrender.com';
 
 function getOrCreateSessionId() {
   const stored = localStorage.getItem('kapru_session_id');
