@@ -67,7 +67,7 @@ export function ChatCanvas() {
 
   return (
     <div className="h-dvh w-full flex flex-col relative overflow-hidden bg-surface transition-colors duration-300">
-      <div className="absolute top-4 right-4 z-50">
+      <div className="absolute top-4 left-4 z-50">
         <ThemeToggle />
       </div>
 
