@@ -42,20 +42,20 @@ export function MessageBubble({ message, onAddToCart }: MessageBubbleProps) {
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`flex gap-3 max-w-4xl mx-auto w-full ${isUser ? 'flex-row-reverse' : ''}`}
+      className={`flex gap-2 sm:gap-3 max-w-4xl mx-auto w-full ${isUser ? 'flex-row-reverse' : ''}`}
     >
       {/* Avatar */}
-      <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${isUser
+      <div className={`flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center ${isUser
         ? 'bg-black/10 dark:bg-white/10 border border-black/20 dark:border-white/20 text-gray-700 dark:text-white'
         : 'bg-gradient-to-br from-primary to-primary-dark shadow-lg shadow-primary/20 text-white'
         }`}>
-        {isUser ? <User size={16} /> : <Gift size={16} />}
+        {isUser ? <User size={14} /> : <Gift size={14} />}
       </div>
 
       {/* Content */}
       <div className={`flex flex-col min-w-0 flex-1 ${isUser ? 'items-end' : 'items-start'}`}>
         {textContent && (
-          <div className={`px-4 py-3 rounded-2xl text-[15px] leading-relaxed shadow-sm max-w-[85%] ${isUser
+          <div className={`px-3 sm:px-4 py-2.5 sm:py-3 rounded-2xl text-[14px] sm:text-[15px] leading-relaxed shadow-sm max-w-[92%] sm:max-w-[85%] ${isUser
             ? 'bg-primary text-white rounded-tr-sm'
             : 'bg-gray-100 dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 text-gray-800 dark:text-gray-100 rounded-tl-sm'
             }`}>
@@ -92,7 +92,7 @@ export function MessageBubble({ message, onAddToCart }: MessageBubbleProps) {
                   );
                 }
                 return (
-                  <div key={partKey} className="w-full mt-2 -ml-2 sm:-ml-4">
+                  <div key={partKey} className="w-full mt-2 -ml-1 sm:-ml-4">
                     <ProductCarousel products={products} onAddToCart={onAddToCart} />
                   </div>
                 );
@@ -101,7 +101,7 @@ export function MessageBubble({ message, onAddToCart }: MessageBubbleProps) {
                 const order = parseOrderResult(output);
                 if (!order) return null;
                 return (
-                  <div key={partKey} className="w-full mt-2 -ml-2 sm:-ml-4">
+                  <div key={partKey} className="w-full mt-2 -ml-1 sm:-ml-4">
                     <CheckoutCard order={order} />
                   </div>
                 );
@@ -110,7 +110,7 @@ export function MessageBubble({ message, onAddToCart }: MessageBubbleProps) {
                 const delivery = parseDeliveryCheck(output);
                 if (!delivery) return null;
                 return (
-                  <div key={partKey} className="w-full mt-2 -ml-2 sm:-ml-4">
+                  <div key={partKey} className="w-full mt-2 -ml-1 sm:-ml-4">
                     <DeliveryStatus info={delivery} />
                   </div>
                 );

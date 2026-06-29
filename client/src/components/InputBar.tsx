@@ -42,7 +42,7 @@ export function InputBar({ input, setInput, handleSubmit, isLoading, stop, itemC
   };
 
   return (
-    <div className="p-4 bg-gradient-to-t from-surface via-surface/95 to-transparent pt-10">
+    <div className="p-3 sm:p-4 bg-gradient-to-t from-surface via-surface/95 to-transparent pt-6 sm:pt-10" style={{ paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom))' }}>
       <div className="max-w-3xl mx-auto relative">
         <form
           onSubmit={onFormSubmit}

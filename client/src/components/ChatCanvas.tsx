@@ -5,6 +5,7 @@ import { MessageBubble } from './MessageBubble';
 import { InputBar } from './InputBar';
 import { TypingIndicator } from './TypingIndicator';
 import { CartPreview } from './CartPreview';
+import { SuggestionCarousel } from './SuggestionCarousel';
 import { Loader2 } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 
@@ -65,6 +66,8 @@ export function ChatCanvas() {
     ))
   );
 
+  const showSuggestions = visibleMessages.length === 0;
+
   return (
     <div className="h-dvh w-full flex flex-col relative overflow-hidden bg-surface transition-colors duration-300">
       <div className="absolute top-4 left-4 z-50">
@@ -81,12 +84,12 @@ export function ChatCanvas() {
       {/* Main chat area */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-y-auto custom-scrollbar pt-8 pb-32"
+        className="flex-1 overflow-y-auto custom-scrollbar pt-8 pb-36 sm:pb-32"
       >
         {visibleMessages.length === 0 ? (
-          <WelcomeScreen onPromptClick={handlePromptClick} />
+          <WelcomeScreen />
         ) : (
-          <div className="flex flex-col gap-6 px-4 md:px-8 max-w-5xl mx-auto pb-8">
+          <div className="flex flex-col gap-4 sm:gap-6 px-3 sm:px-4 md:px-8 max-w-5xl mx-auto pb-8">
             {visibleMessages.map(m => (
               <MessageBubble
                 key={m.id}
@@ -105,7 +108,7 @@ export function ChatCanvas() {
             ))}
 
             {isLoading && messages[messages.length - 1]?.role === 'user' && (
-              <div className="max-w-4xl mx-auto w-full px-12">
+              <div className="max-w-4xl mx-auto w-full px-4 sm:px-12">
                 <TypingIndicator />
               </div>
             )}
@@ -113,8 +116,14 @@ export function ChatCanvas() {
         )}
       </div>
 
-      {/* Sticky input bar */}
+      {/* Sticky bottom: suggestions carousel + input bar */}
       <div className="absolute bottom-0 left-0 right-0 z-20">
+        <div className="px-2 sm:px-4">
+          <SuggestionCarousel
+            onPromptClick={handlePromptClick}
+            visible={showSuggestions}
+          />
+        </div>
         <InputBar
           input={input}
           setInput={setInput}

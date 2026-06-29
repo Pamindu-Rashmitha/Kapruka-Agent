@@ -33,13 +33,13 @@ export function CartPreview({ cart, isOpen, setIsOpen, updateQuantity }: CartPre
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: '100%', opacity: 0 }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-full max-w-md bg-white/90 dark:bg-surface/40 backdrop-blur-3xl border-l border-gray-200 dark:border-white/10 shadow-[[-20px_0_40px_rgba(0,0,0,0.1)]] dark:shadow-[[-20px_0_40px_rgba(0,0,0,0.3)]] z-50 flex flex-col"
+              className="fixed top-0 right-0 bottom-0 w-full sm:max-w-md bg-white/90 dark:bg-surface/40 backdrop-blur-3xl border-l border-gray-200 dark:border-white/10 shadow-[[-20px_0_40px_rgba(0,0,0,0.1)]] dark:shadow-[[-20px_0_40px_rgba(0,0,0,0.3)]] z-50 flex flex-col"
             >
               {/* Subtle glass gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none" />
 
-              <div className="relative z-10 flex items-center justify-between p-6 border-b border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5">
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2 drop-shadow-md">
+              <div className="relative z-10 flex items-center justify-between p-4 sm:p-6 border-b border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5">
+                <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2 drop-shadow-md">
                   <ShoppingBag size={20} className="text-primary drop-shadow-[0_0_8px_rgba(139,92,246,0.5)]" />
                   Your Cart
                 </h2>
@@ -51,7 +51,7 @@ export function CartPreview({ cart, isOpen, setIsOpen, updateQuantity }: CartPre
                 </button>
               </div>
 
-              <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-4 custom-scrollbar relative z-10">
+              <div className="flex-1 overflow-y-auto p-4 sm:p-6 flex flex-col gap-3 sm:gap-4 custom-scrollbar relative z-10">
                 {cart.length === 0 ? (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
@@ -76,7 +76,7 @@ export function CartPreview({ cart, isOpen, setIsOpen, updateQuantity }: CartPre
                       exit={{ opacity: 0, scale: 0.95 }}
                       className="flex gap-4 p-4 glass-panel bg-white dark:bg-white/5 hover:bg-gray-50 dark:hover:bg-white/10 transition-all duration-300 group"
                     >
-                      <div className="w-20 h-20 rounded-xl bg-gray-100 dark:bg-black/40 border border-gray-200 dark:border-white/10 overflow-hidden flex-shrink-0 relative group-hover:border-gray-300 dark:group-hover:border-white/20 transition-colors">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-gray-100 dark:bg-black/40 border border-gray-200 dark:border-white/10 overflow-hidden flex-shrink-0 relative group-hover:border-gray-300 dark:group-hover:border-white/20 transition-colors">
                         {item.imageUrl ? (
                           <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
                         ) : (
@@ -117,7 +117,7 @@ export function CartPreview({ cart, isOpen, setIsOpen, updateQuantity }: CartPre
                 )}
               </div>
 
-              <div className="p-6 border-t border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-black/40 backdrop-blur-xl relative z-10">
+              <div className="p-4 sm:p-6 border-t border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-black/40 backdrop-blur-xl relative z-10">
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-gray-500 dark:text-gray-400 font-medium">Subtotal</span>
                   <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-900 dark:from-white to-gray-600 dark:to-gray-300 drop-shadow-sm">
