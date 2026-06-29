@@ -8,7 +8,7 @@ export function WelcomeScreen() {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.1 }}
-        className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3 tracking-tight text-gray-900 dark:text-white"
+        className="text-xl sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 tracking-tight text-gray-900 dark:text-white"
       >
         Hi, I'm <span className="text-gradient">Kapru</span>.
       </motion.h1>
@@ -17,7 +17,7 @@ export function WelcomeScreen() {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="text-gray-600 dark:text-gray-400 text-base sm:text-lg mb-6 sm:mb-10 max-w-md"
+        className="text-gray-600 dark:text-gray-400 text-base sm:text-base mb-6 sm:mb-10 max-w-md"
       >
         Your personal gifting concierge for Sri Lanka. What occasion are we celebrating today?
       </motion.p>

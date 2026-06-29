@@ -52,9 +52,9 @@ export function InputBar({ input, setInput, handleSubmit, isLoading, stop, itemC
           <button
             type="button"
             onClick={onCartClick}
-            className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-gray-500 dark:text-white/70 hover:text-gray-800 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-white/10 transition-colors mb-0.5 relative group"
+            className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-gray-500 dark:text-white/70 hover:text-gray-800 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-white/10 transition-colors mb-0.5 relative group"
           >
-            <ShoppingBag size={20} className="group-hover:text-primary transition-colors" />
+            <ShoppingBag size={18} className="group-hover:text-primary transition-colors" />
             {itemCount > 0 && (
               <motion.div
                 initial={{ scale: 0 }}
@@ -71,7 +71,7 @@ export function InputBar({ input, setInput, handleSubmit, isLoading, stop, itemC
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={onKeyDown}
             placeholder="Ask Kapru for gift ideas..."
-            className="flex-grow bg-transparent text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-400 py-3 resize-none max-h-[120px] focus:outline-none scrollbar-hide text-base leading-relaxed"
+            className="flex-grow bg-transparent text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-400 py-2 resize-none max-h-[120px] focus:outline-none scrollbar-hide text-[15px] leading-relaxed"
             rows={1}
             disabled={false}
           />
@@ -79,7 +79,7 @@ export function InputBar({ input, setInput, handleSubmit, isLoading, stop, itemC
           <button
             type="submit"
             disabled={!isLoading && !input.trim()}
-            className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center bg-primary text-white disabled:opacity-50 disabled:bg-gray-200 dark:disabled:bg-white/10 transition-colors mb-0.5 mr-0.5"
+            className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center bg-primary text-white disabled:opacity-50 disabled:bg-gray-200 dark:disabled:bg-white/10 transition-colors mb-0.5 mr-0.5"
           >
             <AnimatePresence mode="wait">
               {isLoading ? (
@@ -100,7 +100,7 @@ export function InputBar({ input, setInput, handleSubmit, isLoading, stop, itemC
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <SendHorizonal size={18} className="ml-0.5" />
+                  <SendHorizonal size={16} className="ml-0.5" />
                 </motion.div>
               )}
             </AnimatePresence>
