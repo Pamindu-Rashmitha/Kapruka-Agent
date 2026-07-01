@@ -8,7 +8,7 @@ interface SuggestionCarouselProps {
 }
 
 const suggestions = [
-  { icon: Cake, text: "Cakes under LKR 5000", color: "text-pink-400", bg: "bg-pink-500/10" },
+  { icon: Cake, text: "Birthday Decorations", color: "text-pink-400", bg: "bg-pink-500/10" },
   { icon: Flower2, text: "Send a bouquet to Colombo", color: "text-rose-400", bg: "bg-rose-500/10" },
   { icon: Gift, text: "Anniversary gift ideas", color: "text-purple-400", bg: "bg-purple-500/10" },
   { icon: Heart, text: "Romantic gifts for him", color: "text-red-400", bg: "bg-red-500/10" },

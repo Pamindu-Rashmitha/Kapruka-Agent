@@ -70,9 +70,6 @@ export function ChatCanvas() {
 
   return (
     <div className="h-dvh w-full flex flex-col relative overflow-hidden bg-surface transition-colors duration-300">
-      <div className="fixed top-4 left-4 z-50">
-        <ThemeToggle />
-      </div>
 
       <CartPreview
         cart={cart}
@@ -84,8 +81,12 @@ export function ChatCanvas() {
       {/* Main chat area */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-y-auto custom-scrollbar pt-8 pb-36 sm:pb-32"
+        className="flex-1 overflow-y-auto relative custom-scrollbar pt-8 pb-36 sm:pb-32"
       >
+        <div className="absolute top-4 left-4 z-50">
+          <ThemeToggle />
+        </div>
+
         {visibleMessages.length === 0 ? (
           <WelcomeScreen />
         ) : (
